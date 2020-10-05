@@ -27,26 +27,283 @@
             <br>
             <h2><center style="font-size: 80%;">Masukan Data Peminjam</center></h2>
             <br>
-
+            <!-- Form Input -->
             <label for="namapeminjam">Nama Peminjam</label>
             <input type="text" class="form-control" id="txt_namapeminjam" placeholder="Masukan Nama">
 
             <label for="notelepon">No Telepon</label>
-            <input type="text" class="form-control" id="txt_notelepon" placeholder="Masukan No Telepon">
+            <input type="number" class="form-control" id="txt_notelepon" placeholder="Masukan No Telepon">
 
              <label for="alamat">Alamat</label>
             <input type="text" class="form-control" id="txt_alamat" placeholder="Masukan Alamat">
 
-            <button class="btn btn-primary m-2" onclick="add()">Simpan</button>
             <button class="btn btn-success m-2" onclick="update()">Update</button>
              </div>
              </div>
 
         <div class="image">
-            <div class="card float-left m-4" style="width: 20rem;">
+            <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
                 <img src="mobil elef.jpg" class="card-img-top" alt="Gambar tidak ditemukan">
+                <div class="card-body">
+                    <center><h4 class="card-title" id="mobil1">Isuzu Elf</h4></center>
+                    <p class="card-text">PerHari Rp.700,000 <br>
+                        Setiap Pinjaman 2hari Mendapat Diskon 10% <br>
+                    </p>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
+                        <select class="form-control hari" id="estimasi">
+                            <option value="1">1 Hari</option>
+                            <option value="2">2 Hari</option>
 
+                        </select>
+                    </div>
+                    <button class="btn btn-primary m-2" onclick="add1()">Sewa</button>
+                </div>
+            </div>
+
+        <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
+            <img src="mobil apv.jpg" class="card-img-top" alt="Gambar tidak ditemukan">
+            <div class="card-body">
+                <h4 class="card-title" id="mobil2"><center>Suzuki APV</center></h4>
+                <p class="card-text">PerHari Rp.600,000 <br>
+                   Setiap Peminjaman 2hari Mendapat Diskon 10% <br> 
+                </p>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
+                    <select class="form-control hari" id="estimasi2">
+                    <option value="1">1 Hari</option>
+                    <option value="2">2 Hari</option>
+                </select>
+                </div>
+                <button class="btn btn-primary m-2" onclick="add2()">Sewa</button>
             </div>
         </div>
-</body>
+
+        <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
+            <img src="mobil_avanza.png" class="card-img-top" alt="Gambar tidak ditemukan">
+            <div class="card-body">
+                <h4 class="card-title" id="mobil3"><center>Toyota Avanza</center></h4>
+                <p class="card-text">PerHari Rp.500,000 <br>
+                Setiap Peminjaman 2hari Akan Mendapatkan Diskon 10% <br>
+                </p>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
+                    <select class="form-control hari" id="estimasi3">
+                        <option value="1">1 Hari</option>
+                        <option value="2">2 Hari</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary m-2" onclick="add3()">Sewa</button>
+            </div>
+        </div>
+    </div>
+
+    <center>
+    <div class="table">
+        <div class="form-group">
+
+            <!-- Table -->
+            <table border="2" cellpadding="3" style="text-align: center; width: 1300px;">
+                <thead style="background-color:ghostwhite;">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Penyewa</th>
+                        <th scope="col">Nomor Telepon</th>    
+                        <th scope="col">alamat</th>
+                        <th scope="col">Jenis mobil</th>
+                        <th scope="col">harga</th>
+                        <th scope="col">Waktu Peminjaman</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="datatampil"></tbody>
+            </table>
+        </div>
+    </div>
+</center>
+
+    <script>
+        var nama = []
+        var notelepon = []
+        var alamat = []
+        var tipe = []
+        var estimasi = []
+        var harga = []
+
+
+        var tampil = document.getElementById('datatampil')
+
+        function show() {
+            tampil.innerHTML = "";
+
+            for (i = 0; i < nama.length; i++) {
+                nodata = i + 1;
+
+                tampil.innerHTML += "<tr>" +
+                    "<td>" + nodata + "</td>" +
+                    "<td>" + nama[i] + "</td>" +
+                    "<td>" + notelepon[i] + "</td>" +
+                    "<td>" + alamat[i] + "</td>" +
+                    "<td>" + tipe[i] + "</td>" +
+                    "<td>" + harga[i] + "</td>" +
+                    "<td>" + estimasi[i] + "</td>" +
+                    "<td>" +
+                    "<button class='btn btn-success mr-2' onclick='edit(" + i + ")'>Edit</button>" +
+                    "<button class='btn btn-danger' onclick='hapus(" + i + ")'>Hapus</button>" +
+                    "</td>" +
+                    "</tr>"
+            }
+        }
+
+        show()
+
+
+        function add1() {
+            var namabaru = document.getElementById('txt_namapeminjam').value
+            var noteleponbaru = document.getElementById('txt_notelepon').value
+            var alamatbaru = document.getElementById('txt_alamat').value
+            var estimasibaru = document.getElementById('estimasi').value
+
+            if (estimasibaru == "1") {
+                namabarang = "Isuzu Elf"
+                hargabarang = 700000;
+            } else if (estimasibaru == "2") {
+                namabarang = "Isuzu Elf"
+
+            // Diskon
+            const hargaBdiskon = 700000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+        } else{
+            namabarang = "";
+            hargabarang = 0;
+        }
+
+        nama.push(namabaru)
+        notelepon.push(noteleponbaru)
+        alamat.push(alamatbaru)
+        estimasi.push(estimasibaru)
+        tipe.push(namabarang)
+        harga.push(hargabarang)
+
+        show()
+    }
+
+
+    function add2() {
+        var namabaru = document.getElementById('txt_namapeminjam').value
+        var noteleponbaru = document.getElementById('txt_notelepon').value
+        var alamatbaru = document.getElementById('txt_alamat').value
+        var estimasibaru = document.getElementById('estimasi2').value
+
+        if (estimasibaru == "1") {
+            namabarang = "Suzuki APV"
+            hargabarang = 600000;
+        } else if (estimasibaru == "2") {
+            namabarang = "Suzuki APV"
+
+            const hargaBdiskon = 600000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% Dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+        } else {
+            namabarang = "";
+            hargabarang = 0;
+        }
+
+        nama.push(namabaru)
+        notelepon.push(noteleponbaru)
+        alamat.push(alamatbaru)
+        estimasi.push(estimasibaru)
+        tipe.push(namabarang)
+        harga.push(hargabarang)
+
+        show()
+    }
+
+
+    function add3() {
+        var namabaru = document.getElementById('txt_namapeminjam').value
+        var noteleponbaru = document.getElementById('txt_notelepon').value
+        var alamatbaru = document.getElementById('txt_alamat').value
+        var estimasibaru = document.getElementById('estimasi3').value
+
+        if (estimasibaru == "1") {
+            namabarang = "Toyota Avanza"
+            hargabarang = 500000;
+        } else if (estimasibaru == "2") {
+            namabarang = "Toyota Avanza"
+
+            const hargaBdiskon = 500000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+        } else{
+            namabarang = "";
+            hargabarang = 0;
+        }
+
+        nama.push(namabaru)
+        notelepon.push(noteleponbaru)
+        alamat.push(alamatbaru)
+        estimasi.push(estimasibaru)
+        tipe.push(namabarang)
+        harga.push(hargabarang)
+
+
+        show()
+    }
+
+    // Edit
+    function edit(id) {
+        document.getElementById('txt_namapeminjam').value = nama[id];
+        document.getElementById('txt_notelepon').value = notelepon[id];
+        document.getElementById('txt_alamat').value = alamat[id];
+
+        document.getElementById('edit-btn').innerHTML = `<button class="btn btn-secondary mt-3" onclick="editAction(${id})">update</button>`
+    }
+
+    function editAction(id) {
+        var namabaru = document.getElementById('txt_namapeminjam').value
+        var noteleponbaru = document.getElementById('txt_notelepon').value
+        var alamatbaru = document.getElementById('txt_alamat').value
+
+        nama[id] = namabaru;
+        notelepon[id] = noteleponbaru;
+        alamat[id] = alamatbaru;
+
+        var namabaru = document.getElementById('txt_namapeminjam').value = ''
+        var noteleponbaru = document.getElementById('txt_notelepon').value = ''
+        var alamatbaru = document.getElementById('txt_alamat').value = ''
+        show();
+    }
+    
+    </script>
+
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
 </html>
