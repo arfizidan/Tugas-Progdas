@@ -10,24 +10,22 @@
     <title>Tugas Function</title>
     <style>
         .container{
-            background-color:whitesmoke;
+            background-color:gainsboro;
+            width: 1000px;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:ghostwhite">
-        <a class="navbar-brand" href="#">Home</a>
-        <a class="navbar-brand" href="#">Service</a>
-        <a class="navbar-brand" href="#">About</a>
-    </nav>
-    
-    <div class="container">
+     <div class="container">
         <div class="form-group">
-            <h1><center style="font-size: 100%;">RENTAL SEWA MOBIL BERKAH</center></h1>
+            <br>
+            <h1><center style="font-size: 100%;">RENTAL SEWA MOBIL</center></h1>
+            <br>
             <br>
             <h2><center style="font-size: 80%;">Masukan Data Peminjam</center></h2>
             <br>
-            <!-- Form Input -->
+            
+            <!-- FORM INPUT -->
             <label for="namapeminjam">Nama Peminjam</label>
             <input type="text" class="form-control" id="txt_namapeminjam" placeholder="Masukan Nama">
 
@@ -37,74 +35,82 @@
              <label for="alamat">Alamat</label>
             <input type="text" class="form-control" id="txt_alamat" placeholder="Masukan Alamat">
 
+            <label for="tglpeminjaman">Tanggal Peminjaman</label>
+            <input type="date" class="form-control" id="txt_tglpinjam">
+
+            <label for="tglpengembalian">Tanggal Pengembalian</label>
+            <input type="date" class="form-control" id="txt_tglkembali">
+
             <button class="btn btn-success m-2" onclick="update()">Update</button>
+            
              </div>
              </div>
 
-        <div class="image">
-            <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
-                <img src="mobil elef.jpg" class="card-img-top" alt="Gambar tidak ditemukan">
-                <div class="card-body">
-                    <center><h4 class="card-title" id="mobil1">Isuzu Elf</h4></center>
-                    <p class="card-text">PerHari Rp.700,000 <br>
-                        Setiap Pinjaman 2hari Mendapat Diskon 10% <br>
-                    </p>
-                    <div class="form-group">
+            <!-- SEWA -->
+             <div class="container">
+                <div class="card float-left m-4" style="width: 16rem; height: 28rem;">
+                    <img src="mobil elef.jpg" class="card-img-top" alt="Gambar Tidak Ditemukan">
+                    <div class="card-body">
+                      <h5 class="card-title" id="mobil1" >Isuzu Elf</h5>
+                      <p class="card-text">Per Hari RP.900,000<br>
+                        Setiap Pinjaman 2Hari Mendapatkan Diskon 10%<br>
+                     </p>
+                      <div class="form-group">
                         <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
                         <select class="form-control hari" id="estimasi">
-                            <option value="1">1 Hari</option>
-                            <option value="2">2 Hari</option>
+                          <option value="1">1 Hari</option>
+                          <option value="2">2 Hari</option>
 
                         </select>
+                      </div>
+                      <button class="btn btn-primary m-3" onclick="add1()">Sewa</button>
                     </div>
-                    <button class="btn btn-primary m-2" onclick="add1()">Sewa</button>
+                </div>
+                  
+                <div class="card float-left m-4" style="width: 16rem; height: 28rem;">
+                    <img src="mobil apv.jpg" class="card-img-top" alt="Gambar Tidak Ditemukan">
+                    <div class="card-body">
+                      <h5 class="card-title" id="mobil2">Suzuki APV</h5>
+                      <p class="card-text">Per Hari RP.700,000<br>
+                        Setiap Pinjaman 2Hari Mendapat Diskon 10%<br>
+                      </p>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
+                        <select class="form-control hari" id="estimasi2">
+                          <option value="1">1 Hari</option>
+                          <option value="2">2 Hari</option>  
+                        </select>
+                      </div>
+                      <button class="btn btn-primary m-3" onclick="add2()">Sewa</button>
+                    </div>
+                </div>
+                
+                <div class="card float-left m-4" style="width: 16rem; height: 28rem;">
+                    <img src="mobil_avanza.png" class="card-img-top" alt="Gambar Tidak Ditemukan">
+                    <div class="card-body">
+                      <h5 class="card-title" id="mobil3">Toyota Avanza</h5>
+                      <p class="card-text">Per Hari RP.500,000<br>
+                        Setiap Pinjaman 2 Hari Akan Mendapat Diskon 10%<br>                      
+                      </p>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
+                        <select class="form-control hari" id="estimasi3">
+                          <option value="1">1 Hari</option>
+                          <option value="2">2 Hari</option>
+                        </select>
+                      </div>
+                      <button class="btn btn-primary m-3" onclick="add3()">Sewa</button>
+                    </div>
                 </div>
             </div>
-
-        <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
-            <img src="mobil apv.jpg" class="card-img-top" alt="Gambar tidak ditemukan">
-            <div class="card-body">
-                <h4 class="card-title" id="mobil2"><center>Suzuki APV</center></h4>
-                <p class="card-text">PerHari Rp.600,000 <br>
-                   Setiap Peminjaman 2hari Mendapat Diskon 10% <br> 
-                </p>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
-                    <select class="form-control hari" id="estimasi2">
-                    <option value="1">1 Hari</option>
-                    <option value="2">2 Hari</option>
-                </select>
-                </div>
-                <button class="btn btn-primary m-2" onclick="add2()">Sewa</button>
-            </div>
-        </div>
-
-        <div class="card float-left m-4" style="width: 20rem; height: 31rem;">
-            <img src="mobil_avanza.png" class="card-img-top" alt="Gambar tidak ditemukan">
-            <div class="card-body">
-                <h4 class="card-title" id="mobil3"><center>Toyota Avanza</center></h4>
-                <p class="card-text">PerHari Rp.500,000 <br>
-                Setiap Peminjaman 2hari Akan Mendapatkan Diskon 10% <br>
-                </p>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1"><b>Waktu Peminjaman</b></label>
-                    <select class="form-control hari" id="estimasi3">
-                        <option value="1">1 Hari</option>
-                        <option value="2">2 Hari</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary m-2" onclick="add3()">Sewa</button>
-            </div>
-        </div>
-    </div>
 
     <center>
     <div class="table">
         <div class="form-group">
 
-            <!-- Table -->
-            <table border="2" cellpadding="3" style="text-align: center; width: 1300px;">
-                <thead style="background-color:ghostwhite;">
+            <!-- TABLE -->
+            <table border="2" cellpadding="3" style="text-align: center; width: 1350px;">
+                <thead style="background-color:gainsboro">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Penyewa</th>
@@ -113,6 +119,8 @@
                         <th scope="col">Jenis mobil</th>
                         <th scope="col">harga</th>
                         <th scope="col">Waktu Peminjaman</th>
+                        <th scope="col">Tanggal Peminjaman</th>
+                        <th scope="col">Tanggal Pengembalian</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -122,6 +130,7 @@
     </div>
 </center>
 
+    <!-- JavaScript -->
     <script>
         var nama = []
         var notelepon = []
@@ -129,10 +138,12 @@
         var tipe = []
         var estimasi = []
         var harga = []
-
+        var tglpeminjaman = []
+        var tglpengembalian = []
 
         var tampil = document.getElementById('datatampil')
 
+        // FUNCTION
         function show() {
             tampil.innerHTML = "";
 
@@ -147,6 +158,8 @@
                     "<td>" + tipe[i] + "</td>" +
                     "<td>" + harga[i] + "</td>" +
                     "<td>" + estimasi[i] + "</td>" +
+                    "<td>" + tglpeminjaman[i] + "</td>" +
+                    "<td>" + tglpengembalian[i] + "</td>" +
                     "<td>" +
                     "<button class='btn btn-success mr-2' onclick='edit(" + i + ")'>Edit</button>" +
                     "<button class='btn btn-danger' onclick='hapus(" + i + ")'>Hapus</button>" +
@@ -157,7 +170,179 @@
 
         show()
 
+            // FUNCTION ADD1
+            function add1() {
+            var namabaru = document.getElementById('txt_namapeminjam').value
+            var noteleponbaru = document.getElementById('txt_notelepon').value
+            var alamatbaru = document.getElementById('txt_alamat').value
+            var estimasibaru = document.getElementById('estimasi').value
+            var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
+            var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
+            
+
+            if (estimasibaru == "1") {
+                namabarang = "Isuzu Elf"
+                hargabarang = 900000;
+            } else if (estimasibaru == "2") {
+                namabarang = "Isuzu Elf"
+
+            // DISKON
+            const hargaBdiskon = 900000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+            } else{
+            namabarang = "";
+            hargabarang = 0;
+            }
+
+            nama.push(namabaru)
+            notelepon.push(noteleponbaru)
+            alamat.push(alamatbaru)
+            estimasi.push(estimasibaru)
+            tipe.push(namabarang)
+            harga.push(hargabarang)
+            tglpeminjaman.push(tglpeminjamanbaru)
+            tglpengembalian.push(tglpengembalianbaru)
+
+            show()
+            }
+
+        // FUNCTION ADD2
+        function add2() {
+        var namabaru = document.getElementById('txt_namapeminjam').value
+        var noteleponbaru = document.getElementById('txt_notelepon').value
+        var alamatbaru = document.getElementById('txt_alamat').value
+        var estimasibaru = document.getElementById('estimasi2').value
+        var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
+        var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
+
+        if (estimasibaru == "1") {
+            namabarang = "Suzuki APV"
+            hargabarang = 700000;
+        } else if (estimasibaru == "2") {
+            namabarang = "Suzuki APV"
+
+            // DISKON
+            const hargaBdiskon = 700000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% Dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+        } else {
+            namabarang = "";
+            hargabarang = 0;
+        }
+
+        nama.push(namabaru)
+        notelepon.push(noteleponbaru)
+        alamat.push(alamatbaru)
+        estimasi.push(estimasibaru)
+        tipe.push(namabarang)
+        harga.push(hargabarang)
+        tglpeminjaman.push(tglpeminjamanbaru)
+        tglpengembalian.push(tglpengembalianbaru)
+
+        show()
+    }
+
+        // FUNCTION ADD3
+        function add3() {
+        var namabaru = document.getElementById('txt_namapeminjam').value
+        var noteleponbaru = document.getElementById('txt_notelepon').value
+        var alamatbaru = document.getElementById('txt_alamat').value
+        var estimasibaru = document.getElementById('estimasi3').value
+        var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
+        var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
+
+        if (estimasibaru == "1") {
+            namabarang = "Toyota Avanza"
+            hargabarang = 500000;
+        } else if (estimasibaru == "2") {
+            namabarang = "Toyota Avanza"
+
+            // Diskon
+            const hargaBdiskon = 500000;
+            const diskon1 = 10;
+            const diskon2 = 100;
+
+            const diskonnya = hargaBdiskon / diskon2 * diskon1;
+            const hargaUdiskon = hargaBdiskon - diskonnya;
+
+            hargabarang = hargaUdiskon;
+
+            alert('Anda Telah Mendapatkan Diskon 10% dari ' + hargaBdiskon + ' Jadi ' + hargaUdiskon)
+            } else{
+            namabarang = "";
+            hargabarang = 0;
+            }
+
+        nama.push(namabaru)
+        notelepon.push(noteleponbaru)
+        alamat.push(alamatbaru)
+        estimasi.push(estimasibaru)
+        tipe.push(namabarang)
+        harga.push(hargabarang)
+        tglpeminjaman.push(tglpeminjamanbaru)
+        tglpengembalian.push(tglpengembalianbaru)
+
+        show()
+        }
+
+        // EDIT DAN UPDATE
+        function update() {
+                var editnamapinjam = document.getElementById('txt_namapeminjam').value
+                var edittlp = document.getElementById('txt_notelepon').value
+                var editalmt = document.getElementById('txt_alamat').value
+                var editjam = document.getElementById('txt_tglpinjam').value
+                var editli = document.getElementById('txt_tglkembali').value
+
+                nama[id] = editnamapinjam
+                notelepon[id] = edittlp
+                alamat[id] = editalmt
+                tglpeminjaman[id] = editjam
+                tglpengembalian[id] = editli
+
+                show()
+                
+            }
+
+            function edit(i) {
+                var updatenama = document.getElementById('txt_namapeminjam').value = nama[i]
+                var updatetlp = document.getElementById('txt_notelepon').value = notelepon[i]
+                var updatealmt = document.getElementById('txt_alamat').value = alamat[i]
+                var updatejam = document.getElementById('txt_tglpinjam').value = tglpeminjaman[i]
+                var updatelian = document.getElementById('txt_tglkembali').value = tglpengembalian[i]
+                id = i
+
+                show()
+                
+            }
+
+
+    // HAPUS
+    function hapus(item) {
+        nama.splice(item, 1);
+        notelepon.splice(item, 1);
+        alamat.splice(item, 1);
+        tipe.splice(item, 1);
+        harga.splice(item, 1);
+        estimasi.splice(item, 1);
         
+        show();
+    }
+
     </script>
 
 
