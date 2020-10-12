@@ -10,8 +10,17 @@
     <title>Tugas Function</title>
     <style>
         .container{
-            background-color:gainsboro;
-            width: 1000px;
+            width: 945px;
+            border: 1px solid black;
+            background-color:whitesmoke;
+        }
+        input{
+            border: 1px solid gray;
+            box-shadow: inset 3px 3px 4px rgba(0,0,0,0.4);
+        }
+        textarea{
+            border: 1px solid gray;
+            box-shadow: inset 3px 3px 4px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -32,8 +41,11 @@
             <label for="notelepon">No Telepon</label>
             <input type="number" class="form-control" id="txt_notelepon" placeholder="Masukan No Telepon">
 
-             <label for="alamat">Alamat</label>
-            <input type="text" class="form-control" id="txt_alamat" placeholder="Masukan Alamat">
+            <label for="alamat">Alamat</label>
+            <textarea class="form-control" id="txt_alamat" rows="2" placeholder="Masukan Alamat"></textarea>
+
+            <label for="jaminan">Jaminan</label>
+            <input type="text" class="form-control" id="txt_jaminan" placeholder="Masukan Jaminan">
 
             <label for="tglpeminjaman">Tanggal Peminjaman</label>
             <input type="date" class="form-control" id="txt_tglpinjam">
@@ -109,13 +121,14 @@
         <div class="form-group">
 
             <!-- TABLE -->
-            <table border="2" cellpadding="3" style="text-align: center; width: 1350px;">
-                <thead style="background-color:gainsboro">
+            <table border="2" cellpadding="3" style="text-align: center; width: 1500px;">
+                <thead style="background-color:whitesmoke">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Penyewa</th>
                         <th scope="col">Nomor Telepon</th>    
                         <th scope="col">alamat</th>
+                        <th scope="col">Jaminan</th>
                         <th scope="col">Jenis mobil</th>
                         <th scope="col">harga</th>
                         <th scope="col">Waktu Peminjaman</th>
@@ -130,11 +143,53 @@
     </div>
 </center>
 
+<!--DETAIL-->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail Penyewaan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                <label for="namapeminjam">Nama Peminjam</label>
+                <input type="text" class="form-control" id="modalpeminjam">
+            
+                <label for="notelepon">No Telepon</label>
+                <input type="number" class="form-control" id="modaltelepon">
+            
+                <label for="alamat">Alamat</label>
+                <input type="text" class="form-control" id="modalalamat">
+            
+                <label for="jaminan">Jaminan</label>
+                <input class="form-control" type="text" id="modaljaminan">
+
+                <label for="tglpeminjaman">Tanggal Peminjaman</label>
+                <input type="date" class="form-control" id="modaltglpinjam">
+
+                <label for="tglpengembalian">Tanggal Pengembalian</label>
+                <input type="date" class="form-control" id="modaltglkembali">
+
+                
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+
     <!-- JavaScript -->
     <script>
         var nama = []
         var notelepon = []
         var alamat = []
+        var jaminan = []
         var tipe = []
         var estimasi = []
         var harga = []
@@ -155,13 +210,15 @@
                     "<td>" + nama[i] + "</td>" +
                     "<td>" + notelepon[i] + "</td>" +
                     "<td>" + alamat[i] + "</td>" +
+                    "<td>" + jaminan[i] + "</td>" +
                     "<td>" + tipe[i] + "</td>" +
                     "<td>" + harga[i] + "</td>" +
                     "<td>" + estimasi[i] + "</td>" +
                     "<td>" + tglpeminjaman[i] + "</td>" +
                     "<td>" + tglpengembalian[i] + "</td>" +
                     "<td>" +
-                    "<button class='btn btn-success mr-2' onclick='edit(" + i + ")'>Edit</button>" +
+                    "<button class='btn btn-success mr-1' onclick='edit(" + i + ")'>Edit</button>" +
+                    "<button class='btn btn-warning mr-1' data-toggle='modal' data-target='#modal' onclick='detail(" + i +")'>Detail</button>" +
                     "<button class='btn btn-danger' onclick='hapus(" + i + ")'>Hapus</button>" +
                     "</td>" +
                     "</tr>"
@@ -175,6 +232,7 @@
             var namabaru = document.getElementById('txt_namapeminjam').value
             var noteleponbaru = document.getElementById('txt_notelepon').value
             var alamatbaru = document.getElementById('txt_alamat').value
+            var jaminanbaru = document.getElementById('txt_jaminan').value
             var estimasibaru = document.getElementById('estimasi').value
             var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
             var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
@@ -205,6 +263,7 @@
             nama.push(namabaru)
             notelepon.push(noteleponbaru)
             alamat.push(alamatbaru)
+            jaminan.push(jaminanbaru)
             estimasi.push(estimasibaru)
             tipe.push(namabarang)
             harga.push(hargabarang)
@@ -219,6 +278,7 @@
         var namabaru = document.getElementById('txt_namapeminjam').value
         var noteleponbaru = document.getElementById('txt_notelepon').value
         var alamatbaru = document.getElementById('txt_alamat').value
+        var jaminanbaru = document.getElementById('txt_jaminan').value
         var estimasibaru = document.getElementById('estimasi2').value
         var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
         var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
@@ -248,6 +308,7 @@
         nama.push(namabaru)
         notelepon.push(noteleponbaru)
         alamat.push(alamatbaru)
+        jaminan.push(jaminanbaru)
         estimasi.push(estimasibaru)
         tipe.push(namabarang)
         harga.push(hargabarang)
@@ -262,6 +323,7 @@
         var namabaru = document.getElementById('txt_namapeminjam').value
         var noteleponbaru = document.getElementById('txt_notelepon').value
         var alamatbaru = document.getElementById('txt_alamat').value
+        var jaminanbaru = document.getElementById('txt_jaminan').value
         var estimasibaru = document.getElementById('estimasi3').value
         var tglpeminjamanbaru = document.getElementById('txt_tglpinjam').value
         var tglpengembalianbaru = document.getElementById('txt_tglkembali').value
@@ -291,6 +353,7 @@
         nama.push(namabaru)
         notelepon.push(noteleponbaru)
         alamat.push(alamatbaru)
+        jaminan.push(jaminanbaru)
         estimasi.push(estimasibaru)
         tipe.push(namabarang)
         harga.push(hargabarang)
@@ -305,12 +368,14 @@
                 var editnamapinjam = document.getElementById('txt_namapeminjam').value
                 var edittlp = document.getElementById('txt_notelepon').value
                 var editalmt = document.getElementById('txt_alamat').value
+                var editjmnan = document.getElementById('txt_jaminan').value
                 var editjam = document.getElementById('txt_tglpinjam').value
                 var editli = document.getElementById('txt_tglkembali').value
 
                 nama[id] = editnamapinjam
                 notelepon[id] = edittlp
                 alamat[id] = editalmt
+                jaminan[id] = editjmnan
                 tglpeminjaman[id] = editjam
                 tglpengembalian[id] = editli
 
@@ -322,6 +387,7 @@
                 var updatenama = document.getElementById('txt_namapeminjam').value = nama[i]
                 var updatetlp = document.getElementById('txt_notelepon').value = notelepon[i]
                 var updatealmt = document.getElementById('txt_alamat').value = alamat[i]
+                var updatejmnan = document.getElementById('txt_jaminan').value = jaminan[i]
                 var updatejam = document.getElementById('txt_tglpinjam').value = tglpeminjaman[i]
                 var updatelian = document.getElementById('txt_tglkembali').value = tglpengembalian[i]
                 id = i
@@ -330,12 +396,24 @@
                 
             }
 
+            // fuction detail
+            function detail(i) {
+                document.getElementById('modalpeminjam').value = nama[i]
+                document.getElementById('modaltelepon').value = notelepon[i]
+                document.getElementById('modalalamat').value = alamat[i]
+                document.getElementById('modaljaminan').value = jaminan[i]
+                document.getElementById('modaltglpinjam').value = tglpeminjaman[i]
+                document.getElementById('modaltglkembali').value = tglpengembalian[i]
+
+            }
+
 
     // HAPUS
     function hapus(item) {
         nama.splice(item, 1);
         notelepon.splice(item, 1);
         alamat.splice(item, 1);
+        jaminan.splice(item, 1);
         tipe.splice(item, 1);
         harga.splice(item, 1);
         estimasi.splice(item, 1);
